@@ -47,6 +47,14 @@ int main()
 		system("pause");
 		return 0;
 	}
+	
+	//Part3:¥D¿ï³æ 
+	printf("========================================\n");
+	printf("| 'A'...'Z' : Uppercase                |\n");
+	printf("| 'a'...'z' : Lowercase                |\n");
+	printf("| '0'...'9' : Digit                    |\n");
+	printf("| Otherwise : Your name                |\n");
+	printf("========================================\n");
 
 	
 	system("pause");
