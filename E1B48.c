@@ -28,7 +28,27 @@ int main()
 	
 	system("pause");
 	system("cls");
+	
+	//Part2:密碼驗證 
+	int password,correctpassword=2024;
+	printf("請輸入4位數字密碼\n");
+	scanf("%d",&password);
+	
+	if(password==correctpassword)
+	{
+		printf("歡迎！\n");
+		system("pause");
+		system("cls");
+	}
+	else
+	{
+		printf("%c",'\a');
+		printf("密碼錯誤！");
+		system("pause");
+		return 0;
+	}
 
+	
 	system("pause");
 	return 0;
 }
