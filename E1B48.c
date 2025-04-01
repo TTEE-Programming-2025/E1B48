@@ -55,7 +55,29 @@ int main()
 	printf("| '0'...'9' : Digit                    |\n");
 	printf("| Otherwise : Your name                |\n");
 	printf("========================================\n");
+	
+	//Part4:輸入字元判斷 
+	char input;
+	printf("請輸入一個字元:\n");
+	fflush(stdin);
+	scanf("%c",&input);
 
+	if(input>='A'&&input<='Z')
+	{
+		printf("Uppercase\n");
+	}
+	else if(input>='a'&&input<='z')
+	{
+		printf("Lowercase\n");
+	}
+	else if(input>='0'&&input<='9')
+	{
+		printf("Digit\n");
+	}
+	else
+	{
+		printf("E1B48黃郁婷\n");
+	}
 	
 	system("pause");
 	return 0;
