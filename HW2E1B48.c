@@ -4,6 +4,7 @@
 void menu();
 void drawTriangle();
 void nine();
+void yesorno();
 
 int main()
 {
@@ -70,18 +71,26 @@ int main()
     	case 'A':
     	case 'a':
     	drawTriangle();
+    	getch();
+		system("cls");
     	break;
     	
     	case 'B':
     	case 'b':
+    	getch();
+		system("cls");
     	nine();
+    	break;
+    	
+    	case 'C':
+    	case 'c':
+    	yesorno();
+		system("cls");
     	break;
     	
     	default:
     	break;
 	}
-	getch();
-	system("cls");
 	menu();
 	return 0;
 }
@@ -164,4 +173,28 @@ void nine()
 	return 1;	
 } 
 
+//Part5:是否繼續輸入
+void yesorno()
+{
+	while(1)
+	{
+		char c;
+		printf("Continue?(y/n):");
+		scanf(" %c",&c);
+		if(c=='Y'||c=='y')
+		{
+			break;
+		}	
+		else if(c=='N'||c=='n')
+		{
+			printf("結束程式\n");
+			exit(0);
+		}
+		else
+		{
+			printf("輸入錯誤！請重新輸入！\n");
+		}	
+	}
+	return 1;
+} 
 	
