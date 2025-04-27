@@ -1,5 +1,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
+#include <conio.h>
+void drawTriangle();
 
 int main()
 {
@@ -64,5 +66,58 @@ int main()
     printf("|  c. 結束                             |\n");
     printf("|                                      |\n");
     printf("========================================\n"); 
+    
+    char choice;
+    printf("請選擇(a或b或c):");
+    choice=getche();
+    printf("\n");
+    switch(choice)
+    {
+    	case 'A':
+    	case 'a':
+    	drawTriangle();
+    	break;
+    	
+    	default:
+    	break;
+	}
+	return 0;
 }
+
+//Part3:繪製三角形  
+void drawTriangle() 
+{
+   	while(1)
+	{
+		char c;
+		printf("請輸入'a'到'n'的字元:");
+		scanf(" %c",&c);
+		if(c>='a'&&c<='n')
+		{
+			int row=c-'a'+1;
+			int k,j,i;
+			
+			for(k=row-1;k>=0;k--)
+			{
+				for(i=1;i<=k;i++)
+				{
+					printf(" ");
+				}
+				for(j=1;j<=row-k;j++)
+				{
+					char n=c-(row-k-j);
+					printf("%c",n);
+				}
+				printf("\n");
+			}
+			break;
+		}	
+		else
+		{
+			printf("輸入非'a'到'n'的字元！請重新輸入！\n");
+		}	
+	}
+	return 0;
+}
+
 	
