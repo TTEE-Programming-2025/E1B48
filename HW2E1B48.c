@@ -1,7 +1,9 @@
 #include <stdio.h> 
 #include <stdlib.h>
 #include <conio.h>
+void menu();
 void drawTriangle();
+void nine();
 
 int main()
 {
@@ -57,15 +59,7 @@ int main()
 		}
 	}while(1);
 	
-	//Part2:主選單
-	printf("========================================\n");
-    printf("|          主選單                      |\n");
-    printf("|                                      |\n");
-    printf("|  a. 畫出直角三角形                   |\n");
-    printf("|  b. 顯示乘法表                       |\n");
-    printf("|  c. 結束                             |\n");
-    printf("|                                      |\n");
-    printf("========================================\n"); 
+	menu();
     
     char choice;
     printf("請選擇(a或b或c):");
@@ -78,10 +72,31 @@ int main()
     	drawTriangle();
     	break;
     	
+    	case 'B':
+    	case 'b':
+    	nine();
+    	break;
+    	
     	default:
     	break;
 	}
+	getch();
+	system("cls");
+	menu();
 	return 0;
+}
+
+//Part2:主選單
+void menu()
+{
+	printf("========================================\n");
+    printf("|          主選單                      |\n");
+    printf("|                                      |\n");
+    printf("|  a. 畫出直角三角形                   |\n");
+    printf("|  b. 顯示乘法表                       |\n");
+    printf("|  c. 結束                             |\n");
+    printf("|                                      |\n");
+    printf("========================================\n"); 
 }
 
 //Part3:繪製三角形  
@@ -117,7 +132,36 @@ void drawTriangle()
 			printf("輸入非'a'到'n'的字元！請重新輸入！\n");
 		}	
 	}
-	return 0;
+	return 1;
 }
+
+//Part4:九九乘法
+void nine()
+{
+	while(1)
+	{
+		int n;
+		printf("請輸入1到9的整數n:");
+		scanf(" %d",&n);
+		if(n>=1&&n<=9)
+		{
+			int i,k;
+			for(i=1;i<=n;i++)
+			{
+				for(k=1;k<=n;k++)
+				{
+					printf("%d*%d=%d ",i,k,i*k);
+				}
+				printf("\n");
+			}
+			break;
+		}	
+		else
+		{
+			printf("輸入非1到9的整數n！請重新輸入！\n");
+		}	
+	}
+	return 1;	
+} 
 
 	
