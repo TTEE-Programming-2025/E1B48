@@ -6,6 +6,7 @@ void drawTriangle();
 void nine();
 void yesorno();
 
+
 int main()
 {
 	//Part1:個人風格畫面 &密碼驗證 
