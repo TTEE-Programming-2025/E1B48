@@ -195,3 +195,73 @@ void arrange_seats(char seats[9][9])
         }
     }
 }
+
+//c. Choose by yourself
+void choose_seats(char seats[9][9])
+{
+    int num_seats;
+    printf("您要預訂幾個座位?");
+    scanf("%d",&num_seats);
+    
+    int n;
+    for(n=0;n<num_seats;n++)
+	{
+        int row, col;
+        char dash;
+        printf("請輸入第%d個座位:", n+1);
+        
+        while (1)
+		{
+            if(scanf("%d%c%d",&row,&dash,&col) != 3 || dash != '-' || 
+                row<1 || row>9 || col<1 || col>9)
+			{
+                printf("格式錯誤！請重新輸入:");
+                while (getchar() != '\n');
+                continue;
+            }
+            
+            if(seats[row-1][col-1] != '-')
+			{
+                printf("重位！請選擇其他座位:");
+                continue;
+            }
+            
+            break;
+        }
+        
+        seats[row-1][col-1]='@';
+    }
+    
+    seat_map(seats);
+    printf("按下任意鍵確認選擇");
+    getchar(); getchar();
+    
+    // Convert the user's selection to reserved seats
+    int i,j;
+    for(i=0;i<9;i++)
+	{
+        for(j=0;j<9;j++)
+		{
+            if(seats[i][j]=='@')
+			{
+                seats[i][j]='*';
+            }
+        }
+    }
+}
+
+//d.Exit
+int system_exit()
+{
+    char choice;
+    printf("確定要離開嗎?(y/n):");
+    scanf("%c",&choice);
+    
+    while(choice!='y' && choice!='Y' && choice!='n' && choice!='N')
+	{
+        printf("輸入錯誤，請輸入 y 或 n:");
+        scanf("%c",&choice);
+    }
+    
+    return(choice=='y') ? 1:0;
+}
