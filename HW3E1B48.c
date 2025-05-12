@@ -4,7 +4,7 @@
 
 int main()
 {
-	//個人風格畫面
+	//welcome_screen
 	printf("========================================\n");
 	printf("|                                      |\n");
 	printf("|                                      |\n");
@@ -30,7 +30,7 @@ int main()
 	system("pause");
 	system("cls");
 	
-	//密碼 
+	//password
 	int password,correctpassword=2025,wrong=0;
 	do
 	{
@@ -62,7 +62,7 @@ int main()
 	return 0;
 } 
 
-//主選單 
+//main_menu
 void main_menu()
 {
     printf("---[Booking System]---\n");
@@ -72,10 +72,9 @@ void main_menu()
     printf("d. Exit\n");
 }
 
-//a選項 
+//a. Available seats
 void seat(char seats[9][9])
 {
-    // 初始化所有座位為空
     int i,j;
     for(i=0;i<9;i++)
 	{
@@ -85,8 +84,8 @@ void seat(char seats[9][9])
         }
     }
     
-    // 隨機產生10個已預訂座位
-    srand(time(NULL));//用當前時間生成隨機數
+    //10 random reserved seats
+    srand(time(NULL));
     int booked=0;
     while (booked<10)
 	{
@@ -101,6 +100,7 @@ void seat(char seats[9][9])
     }
 }
 
+//print seat map
 void seat_map(char seats[9][9])
 {
     printf("\\123456789\n");
@@ -108,11 +108,90 @@ void seat_map(char seats[9][9])
     int i,j;
     for(i=9-1;i>=0;i--)
 	{
-        printf("%d",i+1);  //列印行號
+        printf("%d",i+1);
         for(j=0;j<9;j++)
 		{
             printf("%c",seats[i][j]);
         }
         printf("\n");
+    }
+}
+
+//b. Arrange for you
+void arrange_seats(char seats[9][9])
+{
+    int num_seats;
+    do
+    {
+    	printf("您需要幾個座位(1-4)?");
+    	scanf("%d",&num_seats);
+	}while(num_seats<1||num_seats>4);
+
+    
+    //Find available seats
+    int found=0,i,j,k;
+    for(i=0;i<9 && !found;i++)
+	{
+        for(j=0;j<=9-num_seats && !found;j++)
+		{
+            int available=1;
+            for(k=0;k<num_seats;k++)
+			{
+                if(seats[i][j+k]!='-')
+				{
+                    available=0;
+                    break;
+                }
+            }
+            
+            if(available)
+			{
+                //mark the seat
+                for(k=0;k<num_seats;k++)
+				{
+                    seats[i][j+k]='@';
+                }
+                found=1;
+            }
+        }
+    }
+    
+    if(found)
+	{
+		seat_map(seats);
+        
+        char choice;
+        printf("您滿意這個安排嗎?(y/n):");
+        scanf("%c",&choice);
+        
+        if (choice=='y')
+		{
+            //Convert the seats to reserved
+            int i,j;
+            for(i=0;i<9;i++)
+			{
+                for(j=0;j<9;j++)
+				{
+                    if(seats[i][j]=='@')
+					{
+                        seats[i][j]='*';
+                    }
+                }
+            }
+        }
+		else
+		{
+            //Cancel the seats
+            for(i=0;i<9;i++)
+			{
+                for(j=0;j<9;j++)
+				{
+                    if(seats[i][j]=='@')
+					{
+                        seats[i][j]='-';
+                    }
+                }
+            }
+        }
     }
 }
