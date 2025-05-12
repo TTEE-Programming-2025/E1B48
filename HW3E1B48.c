@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+void main_menu();
+void seat(char seats[9][9]);
+void seat_map(char seats[9][9]);
+void arrange_seats(char seats[9][9]);
+void choose_seats(char seats[9][9]);
+int exit_system();
 
 int main()
 {
@@ -57,10 +63,57 @@ int main()
 		}
 	}while(1);
 	
-	main_menu();
-
-	return 0;
-} 
+    char seats[9][9];
+    seat(seats);
+    
+    char option;
+    int exit=0;
+    
+    
+    while(!exit)
+	{
+		system("cls");
+		main_menu();
+        scanf(" %c",&option);
+        while(getchar() != '\n');
+        
+        switch(option)
+		{
+            case 'a':
+                system("cls");
+                seat_map(seats);
+                printf("按下任意鍵返回主選單");
+                getchar(); getchar();
+                break;
+                
+            case 'b':
+    			system("cls");
+                arrange_seats(seats);
+                printf("按下任意鍵返回主選單");
+                getchar(); getchar();
+                break;
+                
+            case 'c':
+                system("cls");
+                choose_seats(seats);
+                break;
+                
+            case 'd':
+                system("cls");
+                if(exit_system())
+                {
+                	exit=1;
+				}
+                break;
+                
+            default:
+                printf("無效選項！請輸入a-d之間的字母！\n");
+                getchar(); getchar();
+        }
+    }
+    
+    return 0;
+}
 
 //main_menu
 void main_menu()
@@ -85,7 +138,6 @@ void seat(char seats[9][9])
     }
     
     //10 random reserved seats
-    srand(time(NULL));
     int booked=0;
     while (booked<10)
 	{
@@ -251,17 +303,21 @@ void choose_seats(char seats[9][9])
 }
 
 //d.Exit
-int system_exit()
+int exit_system()
 {
     char choice;
     printf("確定要離開嗎?(y/n):");
-    scanf("%c",&choice);
+    scanf(" %c",&choice);
     
     while(choice!='y' && choice!='Y' && choice!='n' && choice!='N')
 	{
-        printf("輸入錯誤，請輸入 y 或 n:");
-        scanf("%c",&choice);
+        printf("輸入錯誤，請輸入y或n:");
+        scanf(" %c",&choice);
     }
     
-    return(choice=='y') ? 1:0;
+    return(choice=='y')?0:1;
 }
+
+//心得: 在完成這份座位預訂系統的程式作業後，我深刻體會到實作能力與邏輯思考的重要性。
+//最困難的是選位子和輸出座位圖案的部分 ， 迴圈條件設定弄得我暈頭轉向， 
+//老實說，多虧了chatgpt我才能順利完成這份作業 ,不過過程中還是有學到許多。 
