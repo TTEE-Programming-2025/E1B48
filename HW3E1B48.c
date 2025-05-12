@@ -4,7 +4,7 @@
 
 int main()
 {
-	//Part1:個人風格畫面 &密碼驗證 
+	//個人風格畫面
 	printf("========================================\n");
 	printf("|                                      |\n");
 	printf("|                                      |\n");
@@ -30,6 +30,7 @@ int main()
 	system("pause");
 	system("cls");
 	
+	//密碼 
 	int password,correctpassword=2025,wrong=0;
 	do
 	{
@@ -55,4 +56,63 @@ int main()
 			}
 		}
 	}while(1);
+	
+	main_menu();
+
+	return 0;
 } 
+
+//主選單 
+void main_menu()
+{
+    printf("---[Booking System]---\n");
+    printf("a. Available seats\n");
+    printf("b. Arrange for you\n");
+    printf("c. Choose by yourself\n");
+    printf("d. Exit\n");
+}
+
+//a選項 
+void seat(char seats[9][9])
+{
+    // 初始化所有座位為空
+    int i,j;
+    for(i=0;i<9;i++)
+	{
+        for(j=0;j<9;j++)
+		{
+            seats[i][j]='-';
+        }
+    }
+    
+    // 隨機產生10個已預訂座位
+    srand(time(NULL));//用當前時間生成隨機數
+    int booked=0;
+    while (booked<10)
+	{
+        int row,col;
+		row=rand()%9;
+        col=rand()%9;
+        if (seats[row][col]=='-')
+		{
+            seats[row][col]='*';
+            booked++;
+        }
+    }
+}
+
+void seat_map(char seats[9][9])
+{
+    printf("\\123456789\n");
+    
+    int i,j;
+    for(i=9-1;i>=0;i--)
+	{
+        printf("%d",i+1);  //列印行號
+        for(j=0;j<9;j++)
+		{
+            printf("%c",seats[i][j]);
+        }
+        printf("\n");
+    }
+}
