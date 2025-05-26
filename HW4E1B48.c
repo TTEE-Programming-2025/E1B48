@@ -14,6 +14,7 @@ void main_menu();
 void enter_grade(student stu[],int *count);
 void display_grade(student stu[],int count);
 void search_grade(student stu[],int count);
+void grade_ranking(student stu[],int count);
 
 int main()
 {
@@ -80,7 +81,8 @@ int main()
 		{
 			case 'a': enter_grade(stu,&stu_count); break;
 			case 'b':display_grade(stu,stu_count); break;
-			case 'c':search_grade(stu, stu_count); break;
+			case 'c':search_grade(stu,stu_count); break;
+			case 'd':grade_ranking(stu,stu_count); break;
 			default:
      	   	printf("無效的選項，請重新輸入！\n");
      	    printf("按任意鍵繼續...\n");
@@ -248,7 +250,43 @@ void search_grade(student stu[],int count)
     printf("\n按任意鍵返回主選單...\n");
     getch();
 }
-
+void grade_ranking(student stu[],int count)
+{
+    int i,j;
+    student temp;
+    system("cls");
+    
+    if(count==0)
+	{
+        printf("目前沒有學生資料！\n");
+    } else
+	{
+        for(i=0;i<count-1;i++)
+		{
+            for(j=0;j<count-i-1;j++)
+			{
+                if(stu[j].ave<stu[j+1].ave)
+				{
+                    temp=stu[j];
+                    stu[j]=stu[j+1];
+                    stu[j+1]=temp;
+                }
+            }
+        }
+        
+        printf("%-20s %-10s %-10s\n","姓名","學號","平均成績");
+        printf("--------------------------------------\n");
+        
+        for(i=0;i<count;i++)
+		{
+            printf("%-20s %-10d %-10.1f\n", 
+                   stu[i].name, stu[i].ID, stu[i].ave);
+        }
+    }
+    
+    printf("\n按任意鍵返回主選單...\n");
+    getch();
+}
 	
 
  
