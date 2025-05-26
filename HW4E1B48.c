@@ -13,6 +13,7 @@ typedef struct
 void main_menu();
 void enter_grade(student stu[],int *count);
 void display_grade(student stu[],int count);
+void search_grade(student stu[],int count);
 
 int main()
 {
@@ -79,6 +80,7 @@ int main()
 		{
 			case 'a': enter_grade(stu,&stu_count); break;
 			case 'b':display_grade(stu,stu_count); break;
+			case 'c':search_grade(stu, stu_count); break;
 			default:
      	   	printf("無效的選項，請重新輸入！\n");
      	    printf("按任意鍵繼續...\n");
@@ -198,6 +200,48 @@ void display_grade(student stu[],int count)
                    stu[i].name, stu[i].ID, 
                    stu[i].math, stu[i].phy, 
                    stu[i].eng, stu[i].ave);
+        }
+    }
+    
+    printf("\n按任意鍵返回主選單...\n");
+    getch();
+}
+void search_grade(student stu[],int count)
+{
+    char name[50];
+    int i,found=0;
+    system("cls");
+    
+    if(count==0)
+	{
+        printf("目前沒有學生資料！\n");
+    }
+	else
+	{
+        printf("請輸入要搜尋的學生姓名:");
+        fgets(name,50,stdin);
+        name[strcspn(name,"\n")]='\0';
+        
+        for(i=0;i<count;i++)
+		{
+            if(strcmp(stu[i].name,name)==0)
+			{
+                printf("\n找到學生資料:\n");
+                printf("%-20s %-10s %-10s %-10s %-10s %-10s\n", 
+                       "姓名","學號","數學","物理","英文","平均");
+                printf("------------------------------------------------------------\n");
+                printf("%-20s %-10s %-10d %-10d %-10d %-10.1f\n", 
+                       stu[i].name, stu[i].ID, 
+                       stu[i].math, stu[i].phy, 
+                       stu[i].eng, stu[i].ave);
+                found=1;
+                break;
+            }
+        }
+        
+        if(!found)
+		{
+            printf("\n找不到姓名為 %s 的學生資料。\n",name);
         }
     }
     
