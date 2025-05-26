@@ -12,6 +12,7 @@ typedef struct
 }student;
 void main_menu();
 void enter_grade(student stu[],int *count);
+void display_grade(student stu[],int count);
 
 int main()
 {
@@ -67,20 +68,21 @@ int main()
 			}
 		}
 	}while(1);
+	int stu_count=0;
+	student stu[10];
 	do
 	{
 		main_menu();
 		char choice;
-		int stu_count=0;
-		student stu[10];
 		choice=getch();
 		switch(choice)
 		{
 			case 'a': enter_grade(stu,&stu_count); break;
+			case 'b':display_grade(stu,stu_count); break;
 			default:
-     	   printf("無效的選項，請重新輸入！\n");
-     	   printf("按任意鍵繼續...\n");
-     	   getch();
+     	   	printf("無效的選項，請重新輸入！\n");
+     	    printf("按任意鍵繼續...\n");
+     	    getch();
 		}
 	}while(1);
 	
@@ -88,6 +90,7 @@ int main()
 } 
 void main_menu() //menu
 {
+	system("cls");
 	printf("============[Grade System]==========\n");
 	printf("a.Enter student grades\n");
 	printf("b.Display student grades\n");
@@ -172,6 +175,33 @@ void enter_grade(student stu[],int *count) //enter student's grade
     
     *count+=n;
     printf("\n成績輸入完成！按任意鍵返回主選單...\n");
+    getch();
+}
+void display_grade(student stu[],int count)
+{
+    int i;
+    system("cls");
+    
+    if(count==0)
+	{
+        printf("目前沒有學生資料！\n");
+    }
+	else
+	{
+        printf("%-20s %-10s %-10s %-10s %-10s %-10s\n", 
+               "姓名","學號","數學","物理","英文","平均");
+        printf("------------------------------------------------------------\n");
+        
+        for(i=0;i<count;i++)
+		{
+            printf("%-20s %-10s %-10d %-10d %-10d %-10.1f\n", 
+                   stu[i].name, stu[i].ID, 
+                   stu[i].math, stu[i].phy, 
+                   stu[i].eng, stu[i].ave);
+        }
+    }
+    
+    printf("\n按任意鍵返回主選單...\n");
     getch();
 }
 
