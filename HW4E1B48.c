@@ -15,6 +15,7 @@ void enter_grade(student stu[],int *count);
 void display_grade(student stu[],int count);
 void search_grade(student stu[],int count);
 void grade_ranking(student stu[],int count);
+int exit_system();
 
 int main()
 {
@@ -83,6 +84,11 @@ int main()
 			case 'b':display_grade(stu,stu_count); break;
 			case 'c':search_grade(stu,stu_count); break;
 			case 'd':grade_ranking(stu,stu_count); break;
+			case 'e':
+			if(exit_system())
+			{
+                return 0;
+     	    }
 			default:
      	   	printf("無效的選項，請重新輸入！\n");
      	    printf("按任意鍵繼續...\n");
@@ -287,6 +293,32 @@ void grade_ranking(student stu[],int count)
     printf("\n按任意鍵返回主選單...\n");
     getch();
 }
-	
+int exit_system()
+{
+    char choice;
+    
+    do
+	{
+        system("cls");
+        printf("確定離開？(y/n):");
+        choice=getch();
+        printf("%c\n",choice);
+        
+        if(choice=='y'||choice=='Y')
+		{
+            return 1;
+        }
+		else if(choice=='n'||choice=='N')
+		{
+            return 0;
+        }
+		else
+		{
+            printf("無效的輸入，請輸入 y 或 n。\n");
+            printf("按任意鍵繼續...\n");
+            getch();
+        }
+    } while(1);
+}	
 
  
