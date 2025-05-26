@@ -172,7 +172,7 @@ void enter_grade(student stu[],int *count) //enter student's grade
 		{
             printf("英文成績 (0~100):");
             scanf("%d", &stu[i].eng);
-            while(getchar() != '\n'); // 清除輸入緩衝區
+            while(getchar() != '\n');
             
             if(stu[i].eng<0||stu[i].eng>100)
 			{
@@ -187,7 +187,7 @@ void enter_grade(student stu[],int *count) //enter student's grade
     printf("\n成績輸入完成！按任意鍵返回主選單...\n");
     getch();
 }
-void display_grade(student stu[],int count)
+void display_grade(student stu[],int count) // 顯示所有學生成績 
 {
     int i;
     system("cls");
@@ -214,7 +214,7 @@ void display_grade(student stu[],int count)
     printf("\n按任意鍵返回主選單...\n");
     getch();
 }
-void search_grade(student stu[],int count)
+void search_grade(student stu[],int count) // 搜尋學生成績 
 {
     char name[50];
     int i,found=0;
@@ -256,7 +256,7 @@ void search_grade(student stu[],int count)
     printf("\n按任意鍵返回主選單...\n");
     getch();
 }
-void grade_ranking(student stu[],int count)
+void grade_ranking(student stu[],int count) // 成績排名 
 {
     int i,j;
     student temp;
@@ -285,7 +285,7 @@ void grade_ranking(student stu[],int count)
         
         for(i=0;i<count;i++)
 		{
-            printf("%-20s %-10d %-10.1f\n", 
+            printf("%-20s %-10s %-10.1f\n", 
                    stu[i].name, stu[i].ID, stu[i].ave);
         }
     }
@@ -293,7 +293,7 @@ void grade_ranking(student stu[],int count)
     printf("\n按任意鍵返回主選單...\n");
     getch();
 }
-int exit_system()
+int exit_system() //結束程式 
 {
     char choice;
     
@@ -320,5 +320,8 @@ int exit_system()
         }
     } while(1);
 }	
-
+//心得: 在完成這份作業後，我深刻體會到實作能力與邏輯思考的重要性。
+//練習到最多的是結構體和陣列的應用。
+//最困難的部分是處理指標，但解決後讓我對資料型別有了更深的認識。 
+//老實說，多虧了chatgpt我才能順利完成這份作業 ,不過過程中還是有學到許多。 
  
